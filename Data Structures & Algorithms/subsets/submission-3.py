@@ -1,0 +1,15 @@
+class Solution:
+    def func(self, nums, itr, xi, n):
+        if itr == n:
+            return
+
+        for i in range(itr, n):
+            xi.append(nums[i])
+            self.answer.append(xi[:])
+            self.func(nums, i+1, xi, n)
+            xi.pop()
+        
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.answer = [[]]
+        self.func(nums, 0, [], len(nums))
+        return self.answer

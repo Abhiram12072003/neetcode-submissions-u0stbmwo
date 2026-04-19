@@ -1,0 +1,24 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+        l,h = 0, n-1
+        cnt = 0
+        while l<=h:
+            cnt += 1
+            m = (l+h)//2
+            if nums[m]==target:
+                return True
+            elif nums[l]<nums[m]:
+                if target<nums[m] and target>=nums[l]:
+                    h = m - 1
+                else:
+                    l = m + 1
+            elif nums[l]>nums[m]:
+                if nums[m]<=target and nums[h]>=target:
+                    l = m + 1
+                else:
+                    h = m - 1
+            else:
+                l += 1
+            # print(cnt,l,m,h)
+        return False
